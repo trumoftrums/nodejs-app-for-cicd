@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: nodejs-container
-          image: asia-southeast1-docker.pkg.dev/nodejs-k8s-lab/first-repo-nodejs/first-nodejs-app:latest
+          image: asia-southeast1-docker.pkg.dev/nodejs-k8s-lab/first-repo-nodejs/first-nodejs-app:v2
           ports:
             - containerPort: 3000
