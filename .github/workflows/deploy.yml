@@ -28,12 +28,9 @@ jobs:
           echo "IMAGE=$IMAGE" >> $GITHUB_ENV
 
       - name: Get GKE credentials
-        run: gcloud container clusters get-credentials my-node-cluster --region=asia-southeast1-a
-
-      - name: Install gke-gcloud-auth-plugin
         run: |
-          gcloud components install gke-gcloud-auth-plugin --quiet
-          export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+          gcloud container clusters get-credentials my-node-cluster --region=asia-southeast1-a
+          echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
 
       - name: Deploy to GKE
         run: |
