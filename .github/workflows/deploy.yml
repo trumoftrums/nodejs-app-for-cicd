@@ -45,8 +45,8 @@ jobs:
 
       - name: Apply Kubernetes manifests
         run: |
-          kubectl set image deployment/${{env.DEPLOYMENT_NAME}} ${{env.CONTAINER_NAME}}=$IMAGE || true
           kubectl apply -f k8s/
+          kubectl set image deployment/${{env.DEPLOYMENT_NAME}} ${{env.CONTAINER_NAME}}=$IMAGE
 
       - name: Verify Deployment
         run: |
