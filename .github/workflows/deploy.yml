@@ -27,14 +27,16 @@ jobs:
           docker push $IMAGE
           echo "IMAGE=$IMAGE" >> $GITHUB_ENV
 
-      - name: Install GKE Auth Plugin
-        run: |
-          sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
-          echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
-          
       - name: Get GKE credentials
-        run: |
-          gcloud container clusters get-credentials my-node-cluster --region=asia-southeast1-a
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: my-node-cluster
+          location: asia-southeast1-a
+          project_id: ${{ env.PROJECT_ID }}
+          
+      # - name: Get GKE credentials
+      #   run: |
+      #     gcloud container clusters get-credentials my-node-cluster --region=asia-southeast1-a
 
       - name: Deploy to GKE
         run: |
