@@ -47,6 +47,7 @@ jobs:
         run: |
           kubectl apply -f k8s/
           kubectl set image deployment/${{env.DEPLOYMENT_NAME}} ${{env.CONTAINER_NAME}}=$IMAGE
+          kubectl annotate deployment/${{ env.DEPLOYMENT_NAME }} kubectl.kubernetes.io/change-cause="Update image to commit ${{ github.sha }}" --overwrite
 
       - name: Verify Deployment
         run: |
