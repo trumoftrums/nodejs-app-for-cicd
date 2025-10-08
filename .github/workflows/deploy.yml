@@ -30,9 +30,9 @@ jobs:
       - name: Install GKE Auth Plugin
         run: |
           sudo apt-get update
-          sudo apt-get install -y google-cloud-cli-gke-gcloud-auth-plugin
+          sudo apt-get install -y gke-gcloud-auth-plugin
           echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
-          
+
       - name: Get GKE credentials
         run: |
           gcloud container clusters get-credentials my-node-cluster --region=asia-southeast1-a
