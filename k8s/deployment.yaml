@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodejs-deployment
+  labels:
+    app: nodejs-app
 spec:
   replicas: 2
   selector:
@@ -13,7 +15,7 @@ spec:
         app: nodejs-app
     spec:
       containers:
-        - name: nodejs-app
+        - name: nodejs-container
           image: asia-southeast1-docker.pkg.dev/nodejs-k8s-lab/first-repo-nodejs/first-nodejs-app:v2
           ports:
             - containerPort: 3000
