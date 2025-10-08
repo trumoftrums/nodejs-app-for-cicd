@@ -30,6 +30,11 @@ jobs:
       - name: Get GKE credentials
         run: gcloud container clusters get-credentials my-node-cluster --region=asia-southeast1-a
 
+      - name: Configure kubectl for GKE
+        run: |
+          export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+          echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
+
       - name: Deploy to GKE
         run: |
           kubectl set image deployment/nodejs-deployment nodejs-container=$IMAGE
